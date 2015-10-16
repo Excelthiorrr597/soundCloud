@@ -197,7 +197,7 @@ var TrackInfo = React.createClass({
 
 var TrackCollection = Backbone.Collection.extend({
 
-	url: `https://api.soundcloud.com/tracks?client_id=${clientId}&q=buble`,
+	url: `https://api.soundcloud.com/tracks?client_id=${clientId}&q=journey`,
 
 	parse: function(responseData){
 		return responseData
