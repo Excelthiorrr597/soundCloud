@@ -12,6 +12,8 @@ var clientId = '06863df05ed7c08a37f445c425f2213c',
 	endUserAuthorization = 'https://soundcloud.com/connect',
 	token = 'https://api.soundcloud.com/oauth2/token'
 
+console.log('loaded javascript')
+
 
 var PlaylistContainer = React.createClass({
 
