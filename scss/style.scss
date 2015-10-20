@@ -92,7 +92,8 @@ img {
     * {
         position: absolute;
         font-size: 100px;
-        opacity: .4;
+        opacity: .6;
+        color: goldenrod;
     }
     img {
         opacity: 1;
@@ -102,6 +103,10 @@ img {
         opacity: 1;
         color: steelblue;
     }
+}
+
+#pause {
+    visibility: hidden;
 }
 
 #trackInfo {

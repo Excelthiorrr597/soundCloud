@@ -35,8 +35,6 @@ var PlaylistContainer = React.createClass({
 
 var TrackContainer = React.createClass({
 
-
-
 	componentDidMount: function(){
 	},
 
@@ -80,6 +78,14 @@ var Music = React.createClass({
 
 var PlayBox = React.createClass({
 
+	defaults: {
+		playing: null
+	},
+
+	getInitialState: function(){
+		return{player: null}
+	},
+
 	_handleClick: function(){
 		var walkieTalkie = this.props._walkieTalkie,
 			trackId = this.props.trackInfo.id
@@ -87,17 +93,29 @@ var PlayBox = React.createClass({
 	},
 
 	render: function(){
+
 		var self = this
 		var trackId = this.props.trackInfo.id,
 			focusId = this.props.focusId,
-			url = this.props.trackInfo.artwork_url
+			url = this.props.trackInfo.artwork_url,
+			styleObj = {},
+			styleObj2 = {}
 
 		if (trackId === focusId) {
 
-			SC.stream(`/tracks/${trackId}`).then(function(player){
-				player.play()
-				self.playing = 'playing'
-			})
+			if (this.state.player) {
+
+				this.state.player.toggle()
+				styleObj = {visibility:'hidden'}
+				styleObj2 = {visibility:'visible'}
+					
+			}
+
+			else {
+				SC.stream(`/tracks/${trackId}`).then(function(player){
+					self.setState({player:player})
+				})
+			}
 		}
 		
 
@@ -105,8 +123,8 @@ var PlayBox = React.createClass({
 			<div onClick={this._handleClick} id='playbox'>
 				<img src={url}/>
 				<i id="albumIcon" className="material-icons">album</i>
-				<i id="play" className="material-icons">play_circle_outline</i>
-				<i id="pause" className="material-icons">pause_circle_outline</i>
+				<i id="play" style={styleObj} className="material-icons">play_circle_outline</i>
+				<i id="pause" style={styleObj2} className="material-icons">pause_circle_outline</i>
 			</div>
 			)
 	}
@@ -197,7 +215,7 @@ var TrackInfo = React.createClass({
 
 var TrackCollection = Backbone.Collection.extend({
 
-	url: `https://api.soundcloud.com/tracks?client_id=${clientId}&q=journey`,
+	url: `https://api.soundcloud.com/tracks.json?client_id=${clientId}&q=sinatra`,
 
 	parse: function(responseData){
 		return responseData
@@ -214,6 +232,8 @@ function renderApp(data){
 }
 
 deferredObj.then(renderApp)
+
+// Initializing app using SoundCloud SDK
 
 var SC = require('soundcloud')
 
