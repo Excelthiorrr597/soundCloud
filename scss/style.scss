@@ -72,4 +72,56 @@ img {
 /**
  * YOUR CODE HERE
  */
+#music {
+    margin: 15px 50px 15px 50px;
+    border: .25rem solid black;
+}
+
+#music > div {
+    display: inline-block;
+    max-width: 500px;
+    font-size: .75rem;
+    vertical-align: middle;
+}
+
+#playbox {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    * {
+        position: absolute;
+        font-size: 100px;
+        opacity: .6;
+        color: goldenrod;
+    }
+    img {
+        opacity: 1;
+    }
+    #albumIcon {
+        z-index: -1;
+        opacity: 1;
+        color: steelblue;
+    }
+}
+
+#pause {
+    visibility: hidden;
+}
+
+#trackInfo {
+    margin-left: 20px;
+    div {
+        line-height: .75rem;
+    }
+}
+
+#playCount {
+    display: inline-block;
+}
+
+#likes {
+    display: inline-block;
+}
+
 
